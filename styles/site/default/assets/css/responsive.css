@@ -1,0 +1,153 @@
+@media (min-width: 992px) and (max-width: 1199px) {
+    .cd-headline {
+        font-size: 42px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { 
+    .feature_icon i {
+        font-size: 30px;
+    }
+    .tab-content-text {
+        margin-top: 0;
+    }
+
+    .menu_area nav ul li a {
+        padding: 24px 5px;
+    }
+    .logo_area {
+        padding: 25px 0;
+    }
+    .logo_area h2 {
+        font-size: 18px;
+    }
+    .menu_area nav ul li a {
+        padding: 26px 6px;
+        font-size: 12px;
+    }
+    .mt-100 {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+    .wellcome_area {
+        position: relative !important;
+        clear: both;
+    }
+    .wellcome_heading_text > h2 {
+        font-size: 30px;
+    }
+    .mean-container .mean-bar {
+        position: absolute !important;
+        background: transparent !important;
+        padding: 0 !important;
+        width: 100%;
+        right: 0;
+    }
+    .mean-container a.meanmenu-reveal {
+        height: 18px!important;
+        padding: 26px 30px!important;
+        color: #000;
+    }
+    .mean-container a.meanmenu-reveal span {
+        background-color: #f2435a;
+    }
+    .mean-container .mean-nav {
+        background: #f6f6f6;
+        margin-top: 70px;
+    }
+
+    .mean-container .mean-nav ul li a {
+        padding: .5em 5%;
+        color: #000;
+        border-top: 1px solid #ddd;
+        font-size: 14px;
+    }
+    .header_area {
+        top: 0;
+    }
+    .wellcome_heading_text h3 {
+        font-size: 32px;
+    }
+    .cd-headline {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .tab-content-text {
+        margin-top: 130px;
+    }
+    .frequently_asked_question .heading_text > h2 {
+        font-size: 28px;
+    }
+    .faq_text {
+        margin-bottom: 50px;
+    }
+    .support_text {
+        margin-top: 0px;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .welcome_text .cd-intro > p {
+        font-size: 16px;
+    }
+}
+@media (max-width: 767px) {
+
+    .logo_area {
+        width: 125px;
+    }
+    .home-search {
+        padding: 40px 10px;
+    }
+    .help-center-name {
+        font-size: 25px;
+    }
+    .heading_text {
+        padding: 0 20px;
+    }
+    .section_padding_100 {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    .search {
+        margin-bottom: 20px;
+    }
+    #print-topic {
+        margin: 10px 0;
+        display: inline-block;
+    }
+    .panel .btn{
+        border-radius: 0;
+        margin-bottom: 5px;
+    }
+    .table-filter .media-meta {
+        display: block;
+        width: 100%;
+    }
+    .table-filter .media .title span {
+        display: block;
+        width: 100%;
+    }
+    .table-filter .media .title span {
+        display: block;
+        width: 100%;
+        margin-right: 0; 
+    }
+    .mean-container .mean-bar{
+        z-index: 99;
+    }
+    section.content {
+        float: left;
+    }
+    .table-filter .media .summary {
+        font-size: 14px;
+        float: left;
+        display: block;
+        margin-top: 10px;
+    }
+}
