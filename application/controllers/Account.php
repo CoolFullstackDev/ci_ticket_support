@@ -71,29 +71,107 @@ class Account extends CIF_Controller {
         redirect();
     }
 
+    // added code by topace
+    public function postCURL($_url, $_param){
+        
+        $postData = '';
+        //create name value pairs seperated by &
+        foreach($_param as $k => $v) 
+        { 
+            $postData .= $k . '='.$v.'&'; 
+        }
+        rtrim($postData, '&');
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, false); 
+        curl_setopt($ch, CURLOPT_POST, count($postData));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);    
+
+        $output=curl_exec($ch);
+
+        curl_close($ch);
+
+        return $output;
+    }
+
+    public function test_login(){
+        
+        $params = array(
+            "email" => 'email@fromsupport.com',
+            "password" => 'perfect'
+         );
+        // $url = '192.168.1.112:8080/codeigniter/blogs/login';
+        $url = '192.168.1.112:8080/clientarea/api_login.php';
+
+        $output = $this->postCURL($url, $params);
+        $res = json_decode($output);
+
+        print_r($output);
+    }
+    //////////////////
+
     public function check_login() {
         $this->form_validation->set_message('check_login', "Your credentials is not valid or you account may be suspended");
 
-        if ($user = $this->db
-                ->where('email', $this->input->post('email'))
-                ->where('password', md5($this->input->post('password')))
-                ->where('status','active')
-                ->get('users')
-                ->row()
-        ) {
+        ///// added code by topace
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        // send request to remote server
+        $params = array(
+            "email" => $email,
+            "password" => $password
+         );
+        $url = '192.168.1.112:8080/clientarea/api_login.php';
+ 
+        $output = $this->postCURL($url, $params);
+        $res = json_decode($output);
+        
+        // analyze response from clientside
+        if($res->status == "success"){
             $this->data = [
-                'usename' => $user->username,
-                'email' => $user->email,
-                'user_id' => $user->user_id,
-                'password' => $user->password
+                'username' => $res->username,
+                'email' => $res->email,
+                'user_id' => $res->user_id,
+                'password' => $res->password,
+                'firstname' => $res->firstname,
+                'lastname' => $res->lastname,
+                'image' => $res->image,
+                'country_id' => $res->country_id,
             ];
 
-            foreach ($this->data as $vark => $varv)
-                session($vark, $varv);
+            foreach($this->data as $key => $value)
+                session($key, $value);
+            
             return true;
         } else {
             return false;
         }
+        //////////////////
+
+        // if ($user = $this->db
+        //         ->where('email', $this->input->post('email'))
+        //         ->where('password', md5($this->input->post('password')))
+        //         ->where('status','active')
+        //         ->get('users')
+        //         ->row()
+        // ) {
+        //     $this->data = [
+        //         'usename' => $user->username,
+        //         'email' => $user->email,
+        //         'user_id' => $user->user_id,
+        //         'password' => $user->password
+        //     ];
+
+        //     foreach ($this->data as $vark => $varv)
+        //         session($vark, $varv);
+        //     return true;
+        // } else {
+        //     return false;
+        // }
     }
 
     public function forgot() {

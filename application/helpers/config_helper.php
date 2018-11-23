@@ -128,11 +128,30 @@ function generate_input_($table = false, $field = false, $style = 'sales') {
 function user(){
     global $user;
     if( ! $user){
-        $db = & get_instance();
-        $user = $db->db->where("user_id", session("user_id"))
-                ->get("users")
-                ->row();
-    }
-    return $user;
+        // $db = & get_instance();
+        // $user = $db->db->where("user_id", session("user_id"))
+        //         ->get("users")
+        //         ->row();
+
+        if(session('user_id') != null)
+            $user['user_id'] = session('user_id');
+        if(session('email') != null)
+            $user['email'] = session('email');
+        if(session('username') != null)
+            $user['username'] = session('username');
+        if(session('password') != null)           
+            $user['password'] = session('password');
+        if(session('firstname') != null)   
+            $user['firstname'] = session('firstname');
+        if(session('lastname') != null)  
+            $user['lastname'] = session('lastname');
+        if(session('image') != null)  
+            $user['image'] = session('image');
+        if(session('country_id') != null)  
+            $user['country_id'] = session('country_id');
     
+    }
+
+    return $user;
+
 }

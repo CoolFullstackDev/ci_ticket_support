@@ -40,6 +40,9 @@
                                     <li><a href="<?php echo site_url() ?>">home</a></li>
                                     <li><a href="<?php echo site_url('knowledge_base') ?>">Knowledge Base</a></li>
                                     <li><a href="<?php echo site_url('home/contact') ?>">contact</a></li>
+
+
+                                    <!-- <li><a href="<?php //echo site_url('account/test_login') ?>">test</a></li> -->
                                 </ul>
                             </nav>
                         </div>
@@ -47,11 +50,11 @@
                     <div class="col-md-2">
                         <?php if (!(user())): ?>
                             <div class="client-login">
-                                <a href="javascript:popup_switch('login')" class="login"><i class="pe-7s-lock"></i> Login / Register</a>
+                                <a href="javascript:popup_switch('login')" class="login"><i class="pe-7s-lock"></i> Login </a>
                             </div>
                         <?php else: ?>
                             <div class="client-log">
-                                <a href="<?php echo site_url('dashboard/settings') ?>" class="user-login">
+                                <a href="<?php echo site_url('dashboard/tickets') ?>" class="user-login">
                                     <span>
                                         <?php if (user()->image): ?><img src="<?= base_url() ?>/cdn/users/<?= user()->image ?>" alt="<?= user()->username ?>"> <?php endif ?>
                                         <?php if (!(user()->image)): ?><img src="<?= base_url() ?>/cdn/users/default.png" alt="<?= user()->username ?>"> <?php endif ?>  
@@ -124,7 +127,7 @@
                                     </button>
                                 </div>
                             </form>
-
+                            <!--
                             <form class="popup_register" method="post">
                                 <p class="login-icon">
                                     <i class="pe-7s-id"></i>
@@ -148,7 +151,7 @@
                                     </button>
                                 </div>
                             </form>
-
+                            -->
                             <form class="popup_forgot" method="post">
                                 <p class="login-icon">
                                     <i class="pe-7s-lock"></i>
@@ -164,6 +167,7 @@
                                 </div>
                             </form>
                         </div>
+                        <!--
                         <div class="modal-footer">
                             <p class="popup_login">Don't you have an account? <a href="javascript:popup_switch('register')">Register
                                     now</a>
@@ -173,6 +177,7 @@
                             </p>
                             <p class="popup_register">Already Member? <a href="javascript:popup_switch('login')">Login</a></p>
                         </div>
+                        -->
                     </div>
                 </div>
             </div>

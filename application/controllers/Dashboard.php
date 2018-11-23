@@ -15,11 +15,16 @@ class Dashboard extends CIF_Controller {
     }
 
     public function index() {
-        $data['item'] = $this->db
-                        ->where('user_id', session('user_id'))
-                        ->select('users.*, countries.nicename as country')
-                        ->join('countries', 'users.country_id = countries.country_id', 'left')
-                        ->get('users')->row();
+        $user['user_id'] = session('user_id');
+        $user['email'] = session('email');
+        $user['username'] = session('username');
+        $user['password'] = session('password');
+        $user['firstname'] = session('firstname');
+        $user['lastname'] = session('lastname');
+        $user['image'] = session('image');
+        $user['country_id'] = session('country_id');
+
+        $data['item'] = $user;
         $this->load->view('dashboard/' . __FUNCTION__, $data);
     }
 
@@ -98,25 +103,23 @@ class Dashboard extends CIF_Controller {
         if ($id) {
             $this->{$this->model}->{$this->_primary_key} = $id;
             $this->data['item'] = $this->db
-                    ->join('users', 'users.user_id = tickets.user_id')
-                    ->select('tickets.*, users.image, users.email, users.username, users.user_id')
+                    ->select('tickets.*')
                     ->where('ticket_id', $id)
+                    ->where('tickets.user_id', session('user_id'))
                     ->get('tickets')
                     ->row();
             if (!$this->data['item'])
                 show_404();
             $this->data['items'] = array_merge($this->db
-                            ->select('tickets.*, users.username, users.email, users.image')
+                            ->select('tickets.*')
                             ->order_by('tickets.created', 'asc')
                             ->where('tickets.parent_id', '0')
                             ->where('tickets.ticket_id', $id)
-                            ->join('users', 'users.user_id = tickets.user_id', 'left')
                             ->get('tickets')
                             ->result(), $this->db
-                            ->select('tickets.*, users.username, users.email, users.image')
+                            ->select('tickets.*')
                             ->order_by('tickets.created', 'asc')
                             ->where('tickets.parent_id', $id)
-                            ->join('users', 'users.user_id = tickets.user_id', 'left')
                             ->get('tickets')
                             ->result());
             if (( $this->data['item']->user_id) != session('user_id'))

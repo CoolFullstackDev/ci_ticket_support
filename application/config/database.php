@@ -50,7 +50,7 @@ $query_builder = TRUE;
 
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
-    $db['default']['password'] = '123';
+    $db['default']['password'] = '';
     $db['default']['database'] = 'wehelp';
     $db['default']['dbdriver'] = 'mysqli';
     $db['default']['dbprefix'] = '';
